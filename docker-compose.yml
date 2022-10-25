@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    restart: unless-stopped
+    image: koenkk/zigbee2mqtt:1.28.0
+    volumes:
+      - ./volumes/app/data:/app/data
+      - /run/udev:/run/udev:ro
+    ports:
+      - 8080:8080
+    environment:
+      - TZ=Europe/Vienna
+    devices:
+      - $USBADAPTER:/dev/USBADAPTER
